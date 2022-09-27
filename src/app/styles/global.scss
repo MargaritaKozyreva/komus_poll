@@ -1,0 +1,58 @@
+#komus-poll {
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    max-width: 1200px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'PT Root UI' !important;
+    color: var(--default-text);
+}
+
+a {
+    text-decoration: none;
+    color: var(--link);
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+h3 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+::selection {
+    color: #fff;
+    background: var(--accent) !important;
+}
+
+html {
+    --antd-wave-shadow-color: var(--accent) !important;
+    --scroll-bar: 0;
+}
+
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus+.ant-radio-inner {
+    border-color: var(--border) !important
+}
+
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+    color: inherit !important;
+    border-color: none !important;
+}

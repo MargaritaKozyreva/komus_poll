@@ -1,0 +1,68 @@
+.ant-checkbox-wrapper-custom {
+	display: grid !important;  
+    gap: 10px;    
+	position: relative;
+	user-select: none;	
+}
+.ant-checkbox-wrapper-custom .ant-checkbox-inner {
+	position: relative;	
+	display: inline-block;
+	box-sizing: border-box;			
+	width: 32px;	
+	height: 16px;
+	border: 1px solid rgba(0, 0, 0, .1);
+	border-radius: 25%/50%;	
+	vertical-align: top;
+	background: #eee;
+	transition: .2s;
+}
+.ant-checkbox-wrapper-custom .ant-checkbox-inner:before {
+	content: '';
+	position: absolute;
+	top: 0px;
+	left: 0px;	
+	display: inline-block;
+	width: 14px;	
+	height: 14px;
+	border-radius: 50%;
+	background: white;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+	transition: .15s;
+}
+.ant-checkbox-wrapper-custom input[type=checkbox] {
+	display: block;	
+	width: 0;
+	height: 0;	
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.ant-checkbox-wrapper-custom input[type=checkbox]:not(:disabled):active + .ant-checkbox-inner:before {
+	box-shadow: inset 0 0 2px rgba(0, 0, 0, .3);
+}
+.ant-checkbox-wrapper-custom input[type=checkbox]:checked + .ant-checkbox-inner {
+	background: var(--accent)
+}
+.ant-checkbox-wrapper-custom input[type=checkbox]:checked + .ant-checkbox-inner:before {
+	transform:translateX(18px);
+}
+ 
+/* Hover */
+.ant-checkbox-wrapper-custom input[type="checkbox"]:not(:disabled) + .ant-checkbox-inner {
+	cursor: pointer;
+	border-color: rgba(0, 0, 0, .3);
+}
+ 
+/* Disabled */
+.ant-checkbox-wrapper-custom input[type=checkbox]:disabled + .ant-checkbox-inner {
+	filter: grayscale(70%);
+	border-color: rgba(0, 0, 0, .1);
+}
+.ant-checkbox-wrapper-custom input[type=checkbox]:disabled + .ant-checkbox-inner:before {
+	background: #eee;
+}
+ 
+/* Focus */
+.ant-checkbox-wrapper-custom.focused .ant-checkbox-inner:before {
+	box-shadow: inset 0px 0px 4px #ff5623;
+}

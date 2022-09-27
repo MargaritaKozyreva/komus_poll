@@ -1,0 +1,10 @@
+# Project
+node_modules
+dist
+package-lock.json
+build/
+
+# IDE
+.idea
+.vscode
+.editorconfig

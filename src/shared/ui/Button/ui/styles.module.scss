@@ -1,0 +1,36 @@
+@mixin reset-button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+.root {
+  background: var(--accent) !important;
+  width: min-content;
+
+  &:hover{
+    background: #ffba33 !important;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    border: none !important;
+  }
+  .text {
+    color: var(--default-text) !important
+  }
+
+}

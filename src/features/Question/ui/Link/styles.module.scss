@@ -1,0 +1,15 @@
+.root {
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 10px;
+    .table {
+        width: auto;
+    }
+
+    .btn {
+        width: min-content;
+        background-color: var(--accent);
+        color: var(--default-text)
+    }
+}

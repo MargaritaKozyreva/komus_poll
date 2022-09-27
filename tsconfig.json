@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      //"lib": ["es2015", "es2016", "dom"],
+      "outDir": "./build",
+      "paths": {
+        "@src/*": ["src/*"],
+        "@pages/*": ["src/pages/*"],
+        "@widgets/*": ["src/widgets/*"],
+        "@features/*": ["src/features/*"],
+        "@entities/*": ["src/entities/*"],
+        "@shared/*": ["src/shared/*"],
+        "@ui/*": ["src/shared/ui/*"],
+        "@api/*": ["src/shared/api/*"],
+      },
+      "sourceMap": true,
+      "module": "commonjs",
+      "jsx": "react",
+      "esModuleInterop": true,
+      "experimentalDecorators": false,
+      "allowSyntheticDefaultImports": true,
+      "baseUrl": "./",
+      "alwaysStrict": false,
+      "noImplicitAny": false,
+      "strictNullChecks": false,
+      "strictFunctionTypes": false,
+      "strictPropertyInitialization": false,
+      "noImplicitThis": true,
+      "strictBindCallApply": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      // Linter Checks
+      "noFallthroughCasesInSwitch": true, // https://eslint.org/docs/rules/no-fallthrough
+      "noImplicitReturns": true, // https://eslint.org/docs/rules/consistent-return
+      "noUnusedLocals": false, // https://eslint.org/docs/rules/no-unused-vars
+      "noUnusedParameters": false, // https://eslint.org/docs/rules/no-unused-vars#args
+      "allowUnreachableCode": false, // https://eslint.org/docs/rules/no-unreachable
+      "allowUnusedLabels": false, // https://eslint.org/docs/rules/no-unused-labels
+      // Core Checks
+      "noImplicitUseStrict": false,
+      "noStrictGenericChecks": false,
+      "suppressExcessPropertyErrors": false,
+      "suppressImplicitAnyIndexErrors": false,
+    },
+    "exclude": [
+      "node_modules",
+    ]
+  }

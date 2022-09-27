@@ -1,0 +1,37 @@
+.question {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px dashed var(--border);
+
+    .content {
+        display: grid;
+        grid-template-rows: auto auto;
+
+        .image {
+            width: 150px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    .title {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+
+        span {
+            color: var(--secondary);
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            color: var(--default-text);
+        }
+    }
+}
