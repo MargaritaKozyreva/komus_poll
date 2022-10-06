@@ -56,3 +56,19 @@ html {
     color: inherit !important;
     border-color: none !important;
 }
+
+.checked {
+    padding-top: 15px;
+}
+.required {
+    width: inherit;
+    position: relative;
+}
+
+.required::before {
+    position: absolute;
+    content: 'Необходимо заполнить';
+    color: var(--red);
+    top: -3px;
+    font-size: 11px;
+}

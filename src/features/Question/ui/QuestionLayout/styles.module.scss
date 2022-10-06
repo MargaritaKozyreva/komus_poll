@@ -4,9 +4,26 @@
     padding-bottom: 40px;
     border-bottom: 1px dashed var(--border);
 
+
     .content {
         display: grid;
         grid-template-rows: auto auto;
+        position: relative;
+
+        .required {
+            width: inherit;
+            position: relative;
+            padding-top: 10px;
+        }
+
+        .required::before {
+            content: "*";
+            color: var(--red);
+            position: absolute;
+            top: 5px;
+            left: -15px;
+
+        }
 
         .image {
             width: 150px;

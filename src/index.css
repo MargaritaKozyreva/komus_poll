@@ -6,3 +6,13 @@
     padding: 5px 5px !important;
     overflow-wrap: break-word;
 }
+
+.required {
+    width: inherit;
+    color: red !important;
+}
+
+.required::before {
+    content: 'AAAAAA';
+    color: var(--red);
+}

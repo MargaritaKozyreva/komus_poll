@@ -28,5 +28,6 @@ export enum QuestionVariants {
 export type QuestionResponse<T> = {
   type: QuestionVariants;
   id: QuestionType["question_id"];
+  isRequired: boolean;
   value: T;
 };

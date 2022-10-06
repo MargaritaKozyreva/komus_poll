@@ -1,23 +1,36 @@
 import { QuestionType } from "@src/shared/api/types";
 import { Radio, Space } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QuestionResponse, QuestionVariants } from "../types";
-import './index.css'
+import "./index.css";
 
-const ChoiseQuestion: React.FC<QuestionType> = props => {
-  const [response, setQuestionResponse] = useState<QuestionResponse<String>>({
+const ChoiseQuestionAnswer: React.FC<QuestionType> = props => {
+  const initialState = {
     type: QuestionVariants.CHOISE,
     id: props.question_id,
+    isRequired: props.required,
     value: props.entries[0].id,
-  });
+  };
+  const [response, setQuestionResponse] =
+    useState<QuestionResponse<String>>(initialState);
+
+  useEffect(() => {
+    localStorage.setItem(
+      props.question_id.toString(),
+      JSON.stringify(initialState)
+    );
+  }, []);
 
   const onChange = e => {
-    setQuestionResponse({
+    const state = {
       ...response,
       value: e.target.value,
-    });
+    };
+    setQuestionResponse(state);
+    localStorage.setItem(props.question_id.toString(), JSON.stringify(state));
   };
-  console.log("choise checked", response);
+
+  console.log("###choise checked", response);
   return (
     <Radio.Group onChange={onChange} value={response.value}>
       <Space direction="vertical">
@@ -29,4 +42,4 @@ const ChoiseQuestion: React.FC<QuestionType> = props => {
   );
 };
 
-export { ChoiseQuestion };
+export const ChoiseQuestion = React.memo(ChoiseQuestionAnswer);

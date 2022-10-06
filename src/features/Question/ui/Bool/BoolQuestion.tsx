@@ -1,31 +1,40 @@
 import { QuestionType } from "@src/shared/api/types";
 import React, { useState, useEffect } from "react";
-import { Switch } from "antd";
 import { QuestionResponse, QuestionVariants } from "../types";
-import "./index.css";
 import styles from "./styles.module.scss";
+import { Switch } from "antd";
+import "./index.css";
 
 const BoolQuestion: React.FC<QuestionType> = props => {
-  const [check, setCheck] = useState<boolean>(true);
-  const [state, setState] = useState<QuestionResponse<boolean>>({
+  const initialState = {
     type: QuestionVariants.BOOL,
     id: props.question_id,
-    value: check,
-  });
+    isRequired: props.required,
+    value: true,
+  };
+  const [state, setState] = useState<QuestionResponse<boolean>>(initialState);
 
   useEffect(() => {
-    setState({
-      ...state,
-      value: check,
-    });
-  }, [check]);
+    localStorage.setItem(
+      props.question_id.toString(),
+      JSON.stringify(initialState)
+    );
+  }, []);
 
-  console.log("bool checked", state);
+  const handlerFn = e => {
+    const state = {
+      ...initialState,
+      value: e,
+    };
+    setState(state);
+    localStorage.setItem(props.question_id.toString(), JSON.stringify(state));
+  };
 
+  console.log("#####bool checked", state);
   return (
     <div className={styles.root}>
       <span>Нет</span>
-      <Switch checked={check} onChange={() => setCheck(!check)} />
+      <Switch checked={state.value} onChange={handlerFn} />
       <span>Да</span>
     </div>
   );

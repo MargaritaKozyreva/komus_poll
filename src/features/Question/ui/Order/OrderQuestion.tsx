@@ -5,20 +5,40 @@ import { QuestionResponse, QuestionVariants } from "../types";
 import styles from "./styles.module.scss";
 
 const OrderQuestion: React.FC<QuestionType> = props => {
+  const initialState = {
+    type: QuestionVariants.ORDER,
+    id: props.question_id,
+    isRequired: props.required,
+    value: props.entries,
+  };
+
+  const [state, setState] =
+    useState<QuestionResponse<{ id: string; value: string }[]>>(initialState);
+
   const [itemList, getItemList] = useState<Array<{
     id: string;
     value: string;
   }> | null>(props.entries);
 
-  const [state, setState] =
-    useState<QuestionResponse<{ id: string; value: string }[]>>();
+  useEffect(() => {
+    localStorage.setItem(
+      props.question_id.toString(),
+      JSON.stringify(initialState)
+    );
+  }, []);
 
   useEffect(() => {
     setState({
-      type: QuestionVariants.ORDER,
-      id: props.question_id,
+      ...state,
       value: itemList,
     });
+    localStorage.setItem(
+      props.question_id.toString(),
+      JSON.stringify({
+        ...state,
+        value: itemList,
+      })
+    );
   }, [JSON.stringify(itemList)]);
 
   console.log("order checked", state);

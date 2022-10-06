@@ -1,3 +1,4 @@
+
 import {
   ResponceQuestionType,
   UserType,
@@ -19,3 +20,4 @@ export type RemoteCatalogDTO = WtRemoteCatalogType<
   RemoteFieldsType,
   RemoteColumnsType
 >;
+

@@ -13,19 +13,24 @@ import styles from "./styles.module.scss";
 import { Button } from "@shared/ui";
 
 const LinkQuestion: React.FC<QuestionType> = props => {
-  const [rows, setRows] = useState<any>([]);
-  const [state, setState] = useState<QuestionResponse<any[]>>({
+  const initialState = {
     type: QuestionVariants.LINK,
     id: props.question_id,
+    isRequired: props.required,
     value: [],
-  });
+  };
+
+  const [rows, setRows] = useState<any>([]);
+  const [state, setState] = useState<QuestionResponse<any[]>>(initialState);
 
   useEffect(() => {
-    setState({
-      type: QuestionVariants.LINK,
-      id: props.question_id,
+    const _state = {
+      ...state,
       value: rows.map(row => row.key),
-    });
+    };
+
+    setState(_state);
+    localStorage.setItem(props.question_id.toString(), JSON.stringify(_state));
   }, [JSON.stringify(rows)]);
 
   console.log("link checked", state);
@@ -95,30 +100,40 @@ const LinkQuestion: React.FC<QuestionType> = props => {
 
   return (
     <div className={styles.root}>
-      <Button onClick={showModal}>Выбрать</Button>
-      {(remoteCatalog.entity && rows && (
-        <Table dataSource={rows} className={styles.table}>
-          {remoteCatalog.entity.columns.map(column => (
-            <Column title={column.title} dataIndex={column.data} key={column.data} />
-          ))}
-          <Column
-            title="Действия"
-            key="action"
-            render={(value, record, index) => (
-              <Space
-                size="middle"
-                onClick={() => onHandleDeleteRow(value, record, index)}
-                style={{
-                  cursor: "pointer",
-                }}
-              >
-                <DeleteOutlined />
-                <a>Удалить</a>
-              </Space>
-            )}
-          />
-        </Table>
-      ))}
+      <div
+        className={`checked ${
+          props.required && state.value.length === 0 ? `required` : ``
+        }`}
+      >
+        <Button onClick={showModal}>Выбрать</Button>
+        {remoteCatalog.entity && rows && (
+          <Table dataSource={rows} className={styles.table}>
+            {remoteCatalog.entity.columns.map(column => (
+              <Column
+                title={column.title}
+                dataIndex={column.data}
+                key={column.data}
+              />
+            ))}
+            <Column
+              title="Действия"
+              key="action"
+              render={(value, record, index) => (
+                <Space
+                  size="middle"
+                  onClick={() => onHandleDeleteRow(value, record, index)}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                >
+                  <DeleteOutlined />
+                  <a>Удалить</a>
+                </Space>
+              )}
+            />
+          </Table>
+        )}
+      </div>
     </div>
   );
 };

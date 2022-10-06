@@ -29,6 +29,13 @@ export type QuestionType = {
   catalog?: string;
 };
 
+export type QuestionInfo = {
+  questionId: QuestionType['question_id'];
+  questionType: QuestionVariants;
+  isRequired: boolean;
+  isComplete: boolean;
+}
+
 export type WtRemoteCatalogType<T, U> = {
   success: boolean;
   messageText: string;

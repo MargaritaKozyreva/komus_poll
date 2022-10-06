@@ -1,20 +1,33 @@
 import { QuestionType } from "@src/shared/api/types";
 import { InputNumber } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { QuestionResponse, QuestionVariants } from "../types";
 
 const NumberQuestion: React.FC<QuestionType> = props => {
-  const [response, setQuestionResponse] = useState<QuestionResponse<number>>({
+  const initialState = {
     type: QuestionVariants.NUMBER,
     id: props.question_id,
+    isRequired: props.required,
     value: 0,
-  });
+  };
+
+  const [response, setQuestionResponse] =
+    useState<QuestionResponse<number>>(initialState);
+
+  useEffect(() => {
+    localStorage.setItem(
+      props.question_id.toString(),
+      JSON.stringify(initialState)
+    );
+  }, []);
 
   const onChange = e => {
-    setQuestionResponse({
+    const state = {
       ...response,
       value: e,
-    });
+    };
+    setQuestionResponse(state);
+    localStorage.setItem(props.question_id.toString(), JSON.stringify(state));
   };
 
   console.log("number checked", response);
